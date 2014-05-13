@@ -54,7 +54,6 @@ function update(list, dispID){
    });
 }
 
-
 var msm = new MultiSortableMgr({
    sortableA: {
       dataTemplate: {
@@ -87,7 +86,6 @@ var msm = new MultiSortableMgr({
    },
    multiClass: 'multisortable',
    multiOptions: { items:'>div', selectedClass: ['select','select2']}
-
 });
 
 var dArr = msm.getDataLists();

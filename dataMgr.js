@@ -132,10 +132,6 @@ function DataMgr(config) {
             this.del = sortableDel;
         }
     }
-    else
-    {
-        console.log("DataMgr: This DataMgr won't do anything....");
-    }
 
     // method used for deleting select2 items
     function sel2DelSelected(){

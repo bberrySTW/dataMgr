@@ -11,8 +11,8 @@ function SortableMgr(conf){
          var id = conf.id,
             dataTemplate = conf.dataTemplate,
             sortableClass = conf.sortableClass, 
-            selectedClass = conf.multiOptions.selectedClass,
-            textprop = conf.textprop,
+            selectedClass = conf.selectedClass || conf.multiOptions.selectedClass,
+            textprop = conf.textprop || 'name',
             rxFxn = conf.rxFxn || function(){},
             stopFxn = conf.stopFxn || function(){},
             self = this;

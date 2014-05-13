@@ -7,7 +7,6 @@ function MultiSortableMgr(conf){
 
    if(conf)
    {
-
       // set locals
       var multiOptions = conf.multiOptions;
       var multiClass = conf.multiClass;
@@ -38,7 +37,6 @@ function MultiSortableMgr(conf){
       conf.sortableA.multiOptions = { items:conf.multiOptions.items, selectedClass: conf.multiOptions.selectedClass[0]};
       conf.sortableB.multiOptions ={ items:conf.multiOptions.items, selectedClass: conf.multiOptions.selectedClass[1]};
       
-      
       // the initial data for these will have UUID properties assigned
       var sort1 = new SortableMgr(conf.sortableA);
       var sort2 = new SortableMgr(conf.sortableB);
@@ -46,7 +44,6 @@ function MultiSortableMgr(conf){
       // connect the sortable lists
       $("#"+sort1Conf.id).sortable('option', 'connectWith', '#'+sort2Conf.id);
       $("#"+sort2Conf.id).sortable('option', 'connectWith', '#'+sort1Conf.id);
-
 
       // define callback function when receiving an item
       function rx(evt,ui){   

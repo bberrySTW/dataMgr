@@ -5,40 +5,11 @@ function Sel2Mgr(conf) {
         alert("you forgot to call Sel2Mgr with new");
         return;
     }
-
-    if (conf) {
-        // define private variables
-        var sel2id = conf.id;
-        var textprop = conf.textprop || 'name';
-        var data = formatData(conf.data, conf.textprop);
-        var ph = conf.placeholder || "Select an Item";
-        var selectedID = -1;
-        
-        // instantiate the select2 menu
-        $("#" + sel2id).select2({
-            data: function () {
-                return {
-                    results: data
-                };
-            },
-            placeholder: ph,
-            dropdownAutoWidth: true
-        }).on('select2-selecting', function (e) {
-            selectedID = e.val;
-
-            if(conf.selecting){ conf.selecting(e); }
-        });
-        
-        // setup callbacks... (not fully developed yet)
-        // if(conf.selectFxn) $("#"+sel2id).on('select2-selecting', conf.selectFxn);
-    }
-    else
-    {
-        return;
-    }
     
     this.add = function (item) {
-        data.push({text: item[textprop], id: item.uuid });
+        if(item[textprop]) {
+            data.push({text: item[textprop], id: item.uuid || getID() }); 
+        }
     }
 
     this.delSelected = function () {
@@ -65,15 +36,6 @@ function Sel2Mgr(conf) {
         data = formatData(newData);
     }
     
-    function formatData(dataset) {
-        return dataset.map(function (el) {
-            return {
-                id: el.uuid,
-                text: el[textprop]
-            }
-        });
-    }
-    
     this.editSelected = function(newName){
         if($("#"+sel2id).select2('data'))
         {
@@ -84,4 +46,59 @@ function Sel2Mgr(conf) {
             $("#"+sel2id).select2('val', tmpItem.id);
         }
     }
+
+    var getID = generateIdMaker();
+
+    if (conf) {
+        // define private variables
+        var sel2id = conf.id || '';
+        var textprop = conf.textprop || 'name';
+        var data = formatData(conf.data);
+        var ph = conf.placeholder || "Select an Item";
+        var selectedID = -1;
+
+        if(!sel2id)
+        {
+            alert('Sel2Mgr: No select2 id specified!');
+            return;
+        }
+        
+        // instantiate the select2 menu
+        $("#" + sel2id).select2({
+            data: function () {
+                return {
+                    results: data
+                };
+            },
+            placeholder: ph,
+            dropdownAutoWidth: true
+        }).on('select2-selecting', function (e) {
+            selectedID = e.val;
+            if(conf.selecting){ conf.selecting(e); }
+        });
+        
+    }
+    else
+    {
+        return;
+    }
+
+    // id maker factory
+    function generateIdMaker() {
+        var i = 0;
+        return function() {
+            return i++;
+        }
+    }
+
+    // give a uuid to the data
+    function formatData(dataset) {
+        return dataset.map(function (el) {
+            return {
+                id: el.uuid || getID(),
+                text: el[textprop]
+            }
+        });
+    }
+
 };
