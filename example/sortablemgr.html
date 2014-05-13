@@ -1,0 +1,69 @@
+<html>
+	<head>
+		<link rel="stylesheet" type="text/css" href="./sortableMgrExample.css">
+		<link rel="stylesheet" type="text/css" href="../sortablemgr/jquery-ui-1.10.4.custom/css/mint-choc/jquery-ui-1.10.4.custom.min.css">
+	</head>
+	<body>
+
+		<h1> Single sortable with multiselect </h1>
+		<div id="body">			
+			<ul id="dataDisplay" class="dd"></ul>
+			<br/>
+			<input type="text" id="addtext"/>
+			<input type="button" value="add" id="add"/>
+			<br/>
+			<input type="text" id="edittext"/>
+			<input type="button" value="edit text" id="edit"/>
+			<br/>
+			<input type="button" value="delete Selected" id="del"/>
+			<h2>List 1</h2>
+			<div id="list1" class="sortable1 listbox">
+			</div>
+
+			<h1> multisortable with multiselect </h1>
+			<br/>
+ 			<input type="text" id="addtext2"/>
+			<input type="button" value="add" id="add2"/> JSON format. Ex. {"toList":"list2","name":"item6"}
+			<br/>
+			<input type="text" id="edittext2"/>
+			<input type="button" value="edit selected" id="edit2"/> JSON format. Ex. {"edit":"list2","name":"item6"}
+			<br/>
+			<input type="button" value="delete Selected" id="del2"/>
+			<br/>
+			<div style="float:left;">
+				<h2>List 2</h2>
+				<div id="list2" class="multisortable listbox">
+				</div>
+			</div>
+			<div style="display:inline-block;margin-left:15px;">
+				<h2>List3</h2>
+				<div id="list3" class="multisortable listbox">
+				</div>
+			</div>
+			<br>
+			<div style="float:left;">
+				<ul id="dataDisplay2" class="dd"></ul>
+			</div>
+			<div style="display:inline-block;margin-left:15px;">
+				<ul id="dataDisplay3" class="dd"></ul>
+			</div>
+			<br>
+
+		</div>
+
+		<script type="text/javascript" src="../jquery/jquery-2.0.3.min.js"></script>
+		<script type="text/javascript" src="../sortablemgr/jquery-ui-1.10.4.custom/js/jquery-ui-1.10.4.custom.min.js"></script>
+		<script type="text/javascript" src="../sortablemgr/jquery.multisortable-master/src/jquery.multisortable.js"></script>
+		<script type="text/javascript" src="../sortablemgr/SortableMgr.js"></script>
+
+
+		<script type="text/javascript" src="../dataMgr.js"></script>
+
+		<script type="text/javascript" src="../multisortablemgr/MultiSortableMgr.js"></script>
+
+
+
+		<script type="text/javascript" src="./sortableMgrExample.js"></script>
+
+	</body>
+</html>

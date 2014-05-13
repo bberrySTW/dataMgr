@@ -1,0 +1,41 @@
+<html>
+<body>
+<div id="insertElsHere"></div>
+<script type="text/javascript" src="../jquery/jquery-2.0.3.min.js"></script>
+<script type="text/javascript">
+	var el = [
+
+    {tag: 'input',
+        attr: { type: 'checkbox', id:"mything" }
+},{
+    tag: 'label',
+    attr: { text: 'ruhroh', for: 'mything' }}];
+
+function elemGen(e) {
+    if ($.isArray(e)) {
+        var elm = $.map(e, function (elem) {
+            return elemGen(elem);
+        });
+        return elm;
+    } else if (typeof e === 'object') {
+        if('nodeType' in e) {
+            return e;
+        }
+        if (e.tag) {
+            var elm = $('<' + e.tag + '>', e.attr);
+            if (e.children) {
+                elm.append(elemGen(e.children));
+            }
+            return elm;
+        }
+        else {
+            console.log("elemGen: Error creating element (No type)");
+        }
+    }
+}
+
+$("#insertElsHere").append(elemGen(el)); 
+
+</script>
+</body>
+</html>

@@ -18,7 +18,7 @@ Sel2Mgr Config
 
 The Sel2Mgr constructor function (called by DataMgr if defined) receives an object with the following properties
 
-- data : [array] (this will be handled by the DataMgr, no need to define this if using Sel2Mgr through the DataMgr)
+- data : [array](this will be handled by the DataMgr, no need to define this if using Sel2Mgr through the DataMgr)
 - id : id of the element that you want select2 bound to
 - textprop : the data array for select2 must contain a displayed text property.  This is the key for that.
 - placeholder : optional placeholder

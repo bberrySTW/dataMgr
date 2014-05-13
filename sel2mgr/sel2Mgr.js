@@ -2,7 +2,7 @@
 function Sel2Mgr(conf) {
     // catch incorrect constructor function
     if (!(this instanceof Sel2Mgr)) {
-        alert("you forgot to call DataMgr with new");
+        alert("you forgot to call Sel2Mgr with new");
         return;
     }
 
@@ -25,6 +25,8 @@ function Sel2Mgr(conf) {
             dropdownAutoWidth: true
         }).on('select2-selecting', function (e) {
             selectedID = e.val;
+
+            conf.selecting(e);
         });
         
         // setup callbacks... (not fully developed yet)
@@ -36,7 +38,7 @@ function Sel2Mgr(conf) {
     }
     
     this.add = function (item) {
-        data.push({text: item[textprop], id: item.id });
+        data.push({text: item[textprop], id: item.uuid });
     }
 
     this.delSelected = function () {
@@ -66,7 +68,7 @@ function Sel2Mgr(conf) {
     function formatData(dataset) {
         return dataset.map(function (el) {
             return {
-                id: el.id,
+                id: el.uuid,
                 text: el[textprop]
             }
         });
