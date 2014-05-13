@@ -45,10 +45,24 @@ function DataMgr(config) {
         else
         {
             item.uuid = self.getID();
-            data.push(item);
-            if(display) { display.add(item); }
+            var i = [item];
+            if(filters.length)
+            {
+                filters.forEach(function(e){
+                    if(i.length)
+                    {
+                        i=i.filter(e);
+                    }
+                });
+            }
+            if(i.length){
+                data.push(i[0]); 
+                if(display) { display.add(i[0]); }
+                return i[0];
+            }
         }
-        return item;
+        console.log('DataMgr: Added item was filtered out.');
+        return false;
     }
 
     // retrieves an item based on uuid
@@ -76,6 +90,20 @@ function DataMgr(config) {
         }
     }
 
+    // add a filter to filter data
+    this.addFilter = function(fxn){
+        filters.push(fxn);
+    }
+
+    // filter the data
+    this.filterData = function()
+    {
+        filters.forEach(function(e)
+        {
+            data = data.filter(e);
+        });
+    }
+
     // create ID maker
     this.getID = generateIdMaker();
 
@@ -83,6 +111,7 @@ function DataMgr(config) {
 
     // initialization
     if (config) {
+        var filters = config.filters || [];
         var data = formatData(config.data);
         var display;
         if (config.select2) {
@@ -114,6 +143,7 @@ function DataMgr(config) {
         display.delSelected();
     }
     
+    // edit selected select2 item
     function sel2EditSelected(prop, val){
         var selID = display.getSelectedProp('id');
         var item = this.getItemByUuid(selID);

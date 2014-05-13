@@ -26,7 +26,7 @@ function Sel2Mgr(conf) {
         }).on('select2-selecting', function (e) {
             selectedID = e.val;
 
-            conf.selecting(e);
+            if(conf.selecting){ conf.selecting(e); }
         });
         
         // setup callbacks... (not fully developed yet)
