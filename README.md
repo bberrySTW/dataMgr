@@ -252,24 +252,3 @@ One exception regarding the sortable setup object.... the `rxFxn` and `stopFxn` 
 ##### Getters
 
 `myMultiSortableMgr.getDataLists` will retrieve the data arrays for the DataMgr instances.
-
-d
-
-d
-
-d
-
-d
-
-d
-
-d
-
-d
-
-d
-
-d
-
-d
-
