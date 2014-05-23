@@ -112,7 +112,7 @@ function DataMgr(config) {
     // initialization
     if (config) {
         var filters = config.filters || [];
-        var data = formatData(config.data);
+        var data = formatData(config.data || []);
         var display;
         if (config.select2) {
             var dispConf = config.select2;

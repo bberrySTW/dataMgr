@@ -55,7 +55,7 @@ function SortableMgr(conf){
          }
 
          // adds the initial data elements to the list
-         $("#"+id).append(elemGen(formatData(conf.data)));
+         $("#"+id).append(elemGen(formatData(conf.data || [])));
    }
 
    // adds item to display and local data arr

@@ -41,6 +41,8 @@ function MultiSortableMgr(conf){
       var sort1 = new SortableMgr(conf.sortableA);
       var sort2 = new SortableMgr(conf.sortableB);
 
+      console.log(sort2.getData());
+
       // connect the sortable lists
       $("#"+sort1Conf.id).sortable('option', 'connectWith', '#'+sort2Conf.id);
       $("#"+sort2Conf.id).sortable('option', 'connectWith', '#'+sort1Conf.id);
