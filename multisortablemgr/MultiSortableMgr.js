@@ -41,8 +41,6 @@ function MultiSortableMgr(conf){
       var sort1 = new SortableMgr(conf.sortableA);
       var sort2 = new SortableMgr(conf.sortableB);
 
-      console.log(sort2.getData());
-
       // connect the sortable lists
       $("#"+sort1Conf.id).sortable('option', 'connectWith', '#'+sort2Conf.id);
       $("#"+sort2Conf.id).sortable('option', 'connectWith', '#'+sort1Conf.id);
@@ -72,6 +70,8 @@ function MultiSortableMgr(conf){
 
    }
 
+   this.moveItem
+
    // add an item to a list. (simply calls data/sortable mgrs add fxn)
    this.addTo = function(listID, item)
    {
@@ -85,8 +85,8 @@ function MultiSortableMgr(conf){
          var ret = d2.add(item);
          sort2.add(ret);
       }
-      update(d1, 'dataDisplay2');
-      update(d2, 'dataDisplay3');
+/*      update(d1, 'dataDisplay2');
+      update(d2, 'dataDisplay3');*/
    }
 
    // property editing is shallow (1 level deep)
@@ -125,8 +125,8 @@ function MultiSortableMgr(conf){
       });
 
       // THIS IS FOR TESTING PURPOSES ONLY //
-      update(d1, 'dataDisplay2');
-      update(d2, 'dataDisplay3');
+/*      update(d1, 'dataDisplay2');
+      update(d2, 'dataDisplay3');*/
       ///////////////////////////////////////
    }
 
@@ -149,8 +149,8 @@ function MultiSortableMgr(conf){
       sort2.del();
 
       // THIS IS FOR TESTING PURPOSES ONLY //
-      update(d1, 'dataDisplay2');
-      update(d2, 'dataDisplay3');
+/*      update(d1, 'dataDisplay2');
+      update(d2, 'dataDisplay3');*/
       ///////////////////////////////////////
 
    }
@@ -171,13 +171,13 @@ function MultiSortableMgr(conf){
       toSort.add(retItem);
 
       // THIS IS FOR TESTING PURPOSES ONLY //
-      update(d1, 'dataDisplay2');
-      update(d2, 'dataDisplay3');
+/*      update(d1, 'dataDisplay2');
+      update(d2, 'dataDisplay3');*/
       ///////////////////////////////////////
    }
 
    // !!!!!!!!!!!! THIS IS IN HERE FOR TESTING PURPOSES ONLY !!!!!!!!!!!!!
-   function update(list, dispID){
+/*   function update(list, dispID){
       var d = list.getData();
       $("#"+dispID).html("");
       d.forEach(function(e){
@@ -193,12 +193,12 @@ function MultiSortableMgr(conf){
          listItem.appendChild(node); 
          $("#"+dispID).append(listItem);
       });
-   }
+   }*/
    ///////////////////////////////////////////////////////////////////////
 
    // get data lists as an array from the dataMgrs
    this.getDataLists = function(){
-      return [d1, d2];
+      return [d1.getData(), d2.getData()];
    }
 
 }
