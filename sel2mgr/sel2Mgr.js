@@ -5,11 +5,37 @@ function Sel2Mgr(conf) {
         alert("you forgot to call Sel2Mgr with new");
         return;
     }
+
+    // retrieves an item based on uuid
+    this.getItemById = function(selID)
+    {
+        var idx = -1;
+        // get the index in the array of the selected ID
+        data.some(function(e, i){
+            var ret = false
+            if(e.id === selID )
+            {
+                idx = i;
+                ret = true;
+            }
+            return ret;
+        });
+        if(data[idx])
+        {
+            return data[idx];
+        }
+        else
+        {
+            console.log("DataMgr -> getItemByUuid : could not find item with selected UUID. Barfing...");
+            return;
+        }
+    }
     
     this.add = function (item) {
         if(item[textprop]) {
-            data.push({text: item[textprop], id: item.uuid || getID() }); 
+            data.push({text: item[textprop], id: item.uuid || sel2id+"_"+getID() }); 
         }
+        $("#"+sel2id).select2('val', item.uuid);
     }
 
     this.delSelected = function () {
@@ -71,11 +97,12 @@ function Sel2Mgr(conf) {
                 };
             },
             placeholder: ph,
-            dropdownAutoWidth: true
+            dropdownAutoWidth: true,
+            allowClear: conf.allowClear || false,
         }).on('select2-selecting', function (e) {
             selectedID = e.val;
             if(conf.selecting){ conf.selecting(e); }
-        });
+        }).on('select2-clearing', conf.clearing);
         
     }
     else
@@ -85,7 +112,7 @@ function Sel2Mgr(conf) {
 
     // id maker factory
     function generateIdMaker() {
-        var i = 0;
+        var i = 1;
         return function() {
             return i++;
         }
@@ -95,7 +122,7 @@ function Sel2Mgr(conf) {
     function formatData(dataset) {
         return dataset.map(function (el) {
             return {
-                id: el.uuid || getID(),
+                id: el.uuid || sel2id+"_"+getID(),
                 text: el[textprop]
             }
         });

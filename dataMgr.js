@@ -85,8 +85,8 @@ function DataMgr(config) {
         }
         else
         {
-            console.log("DataMgr -> getItemByUuid : could not find item with selected UUID. Barfing...");
-            return;
+            console.log("DataMgr -> getItemByUuid : could not find item with selected UUID "+selID+". Barfing...");
+            return false;
         }
     }
 
@@ -197,7 +197,7 @@ function DataMgr(config) {
     
     // id maker factory
     function generateIdMaker() {
-        var i = 0;
+        var i = 1;
         return function() {
             return i++;
         }

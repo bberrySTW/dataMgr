@@ -82,6 +82,8 @@ Neither has a return value.
 
 To retrieve an item based on its uuid, simply call `myDataMgr.getItemByUuid(id)`.  This returns the object in the data array that matches the input `id` if it exists.
 
+Warning, the 'id' field accepts a number, not a string.
+
 Use `myDataMgr.getData()` to retrieve the entire data array.  This will include the property `.uuid`.
 
 ---
